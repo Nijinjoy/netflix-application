@@ -1,0 +1,21 @@
+.avatar{
+    width: 90px;
+    position: fixed;
+    left: 20px;
+}
+.navbar{
+    width: 100%;
+    background-color: black;
+    height: 3rem;
+    position: fixed;
+}
+.list{
+    display: flex;
+    color: white;
+    gap: 3rem;
+    list-style: none;
+    margin-left: 10rem;
+}
+li{
+    margin-top: 8px;
+}

@@ -1,16 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import './Banner.css'
+import axios from '../../axios'
+import {api_key,imageUrl} from '../../constants/constants'
 
 function Banner() {
+  const [movie,setMovie]= useState()
+  useEffect(() => {
+    axios.get(`trending/all/week?api_key=${api_key}&language=en-US`).then((response)=>{
+      console.log(response.data.results[0]);
+      setMovie(response.data.results[0])
+    })
+  }, [])
   return (
-    <div className='banner'>
-  <div className="content">
-    <h1 className='title'>Movie Name</h1>
-    <div className="banner-btns">
-       <button className='button'>Play</button>
-       <button className='button'>My List</button>
-    </div>
-    <h2 className='desc'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo quidem eius iusto </h2>
-  </div>
+    <div
+    style={{backgroundImage: `url(${ movie ? imageUrl+ movie.backdrop_path : ""})`}}
+    className='banner'>
+      <div className="content">
+        <h1 className='title'>{movie? movie.title : ""}</h1>
+        <div className="banner-btns">
+          <button className='button'>Play</button>
+          <button className='button'>My List</button>
+        </div>
+        <h2 className='desc'>{movie ? movie.overview : ""} </h2>
+      </div>
+      <div className="fade">
+
+      </div>
     </div>
   )
 }
